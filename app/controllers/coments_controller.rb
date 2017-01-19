@@ -13,21 +13,21 @@ class ComentsController < ApplicationController
     @coment = Coment.new
   end
 
-
-
   # POST /coments
   # POST /coments.json
   def create
-    @coment = Coment.new(comment_params)
-
+    @article = Article.find_by(params[:article_id])
+    @coment = @article.coment.build(comment_params)
     respond_to do |format|
       if @coment.save
-        format.html { redirect_to @commnt, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @coment }
-      else
-        format.html { render :new }
-        format.json { render json: @coment.errors, status: :unprocessable_entity }
+        redirect_to @article
       end
+        # format.html { redirect_to @commnt, notice: 'Comment was successfully created.' }
+        # format.json { render :show, status: :created, location: @coment }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @coment.errors, status: :unprocessable_entity }
+      # end
     end
   end
 

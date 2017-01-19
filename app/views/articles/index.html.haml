@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-md-8
+      = link_to 'New Post', new_article_path, class: "btn btn-success"
+      - @articles.each do |article|
+        %h2
+          %span Post:
+          = article.name
+        %input.hidden(type='text' placeholder = "Enter new name" data-article-id="#{article.id}")
+        %p= article.text
+        = link_to 'Show post', article_path(article.id), class: 'btn btn-primary'
+        %h3 Comments:
+        = button_tag 'Add coment', data: {article_id: "#{article.id}" }, class: 'btn btn-info', id: 'updateComent'
+        %br
+        %br
+        = link_to 'Destroy post', article_path(article.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+        %hr/
