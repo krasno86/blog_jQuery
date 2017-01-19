@@ -9,6 +9,41 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>s
+          <%= link_to('Home', articles_path, class: "navbar-brand") %>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Ссылка</a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+        <!-- /.navbar-collapse -->
+          <li><a>
+            <% if user_signed_in? %>Здравствуйте, <%= current_user.email %>
+          </a></li>
+            <li>
+              <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %><% else %>
+            </li>
+            <li>
+              <%= link_to 'Войти', new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+            </li>
+            <% end %>
+            </ul>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

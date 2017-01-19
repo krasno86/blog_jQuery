@@ -1,18 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!, except: [:home,]
 
   def home
   end
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = current_user.articles
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @article = Article.find(params[:id])
   end
 
   # GET /articles/new
@@ -27,15 +28,17 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
-
+    #@article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
+        redirect_to @article
+        # format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        # format.json { render :show, status: :created, location: @article }
       else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        ender 'new'
+        # format.html { render :new }
+        # format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,6 +75,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.fetch(:article, {})
+      params.require(:article).permit(:name, :text, :user_id)
     end
 end

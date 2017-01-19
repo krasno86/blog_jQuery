@@ -1,0 +1,1 @@
+json.partial! "coments/blog_new", blog_new: @comment

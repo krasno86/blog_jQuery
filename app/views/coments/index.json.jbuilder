@@ -1,0 +1,1 @@
+json.array! @comments, partial: 'coments/blog_new', as: :blog_new
