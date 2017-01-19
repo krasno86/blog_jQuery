@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<div class="header-content">
+  <div class="header-content-inner">
+    <h1><span>Post name: </span><%= @article.name %></h1>
+    <h2><span>Text: </span><%= @article.text %></h2>
+    <h3 class="page-header">Comments:</h3>
+    <% @article.coments.each do |coment|%>
+      <p><%= coment.text%></p>
+    <% end %>
+  </div>
+</div>
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
