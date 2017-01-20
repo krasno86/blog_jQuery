@@ -1,24 +1,18 @@
 function ready() {
-
-	function deleteSurvey() {
-			var button = $(this);
-			var surveyId = button.data().surveyId;
-			$.ajax({
-				url: '/surveys/'+surveyId,
-				type: 'DELETE',
-				success: function (result) {
-					var parent = button.parents('.survey-' + result.id);
-					parent.fadeOut('slow');
-				}
-			});
-	}
+	$(document).on('click', '#addComent', addComent);
 
 	function addComent() {
 		var button = $(this);
-		var surveyId = button.data().surveyId;
+		var coment_text = $('textarea').val();
+		console.log(coment_text);
 		$.ajax({
-
-
+			url: 'coment/',
+			type: 'Post',
+			data: {coment:{ text: coment_text} },
+			success: function (result) {
+				var parent = input.parents('.article-' + result.id);
+				$(parent).find('input').toggleClass('hidden');
+			}
 		});
 	}
 
@@ -54,7 +48,6 @@ function ready() {
 		}
 
 }
-// $(document).on('click', '#addComent', addComent);
 
 // $(function () {
 // 	$('h2').click(function () {
