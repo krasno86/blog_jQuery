@@ -1,0 +1,21 @@
+%p#notice= notice
+.header-content
+  .header-content-inner
+    %h1
+      %span Post name:
+      = @article.name
+    %h2
+      %span Text:
+      = @article.text
+    %textarea(cols = "50" rows = "4" placeholder = "Enter new comment:")
+    %br
+    %button.btn.btn-info#addComent(type="button")
+      Create comment
+    %h3.page-header Comments:
+    - @article.coments.each do |coment|
+      %p= coment.text
+%br
+= link_to 'Edit', edit_article_path(@article)
+|
+= link_to 'Back', articles_path
+

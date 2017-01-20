@@ -1,11 +1,8 @@
 class ComentsController < ApplicationController
   before_action :set_coment, only: [:show, :edit, :update, :destroy]
 
-
-
-  # GET /coments/1
-  # GET /coments/1.json
   def show
+    @coments = Coment.all
   end
 
   # GET /coments/new
@@ -13,8 +10,6 @@ class ComentsController < ApplicationController
     @coment = Coment.new
   end
 
-  # POST /coments
-  # POST /coments.json
   def create
     @article = Article.find_by(params[:article_id])
     @coment = @article.coment.build(comment_params)

@@ -6,17 +6,14 @@
     <div class="col-md-8">
       <%= link_to 'New Post', new_article_path, class: "btn btn-success" %>
       <% @articles.each do |article| %>
-        <h2>
-          <a href="/articles/<%=article.id %>">
-            <span>Post:</span>
-          <%= article.name %></h2>
-        </a>
+        <h2><span>Post:</span>
+          <%= article.name %>
+        </h2>
         <%= form_tag class: "hidden", type:'text', placeholder:"Enter new name", data: {survey_id: "#{survey.id}"}%>
         <%= article.text %>
         <h3>Comments:</h3>
         <div class="actions">
           <%= button_tag 'Add coment', data: {article_id: "#{article.id}" }, class: 'btn btn-info', id: 'updateComent' %>
-          <!--<button type="button" class="btn btn-info" id='addComment' data-article-id="#{article.id}")>Add comment</button>-->
         </div>
           <%#= link_to 'New comment', new_article_coment_path(article), class: "btn btn-primary"%>
           <!--New comment<span class="glyphicon glyphicon-chevron-right"></span>-->
