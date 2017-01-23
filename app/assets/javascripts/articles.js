@@ -2,6 +2,7 @@ function ready() {
 	$(document).on('click', '#addComent', addComent);
 
 	function addComent() {
+		console.log('click')
 		var button = $(this);
 		var coment_text = $('textarea').val();
 		console.log(coment_text);
@@ -10,8 +11,9 @@ function ready() {
 			type: 'Post',
 			data: {coment:{ text: coment_text} },
 			success: function (result) {
-				var parent = input.parents('.article-' + result.id);
-				$(parent).find('p#text').toggleClass('hidden');
+				var p = $('<p>'+ result.text +'</p>');
+				// $('p.hidden#new_text').append(p).removeClass('hidden');
+			$('.comments').append(p);
 			}
 		});
 	}

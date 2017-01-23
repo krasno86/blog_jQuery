@@ -1,4 +1,6 @@
-= link_to 'New Post', new_article_path, class: "btn btn-success"
+.button
+  = link_to 'New Post', new_article_path, class: "btn btn-success"
+%br
 .container
   .row
     - @articles.each do |article|

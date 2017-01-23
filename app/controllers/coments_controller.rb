@@ -20,12 +20,14 @@ class ComentsController < ApplicationController
     @article = Article.find_by(id: params[:article_id])
     @coment = current_user.coments.new(coment_params)
     @article.coments.push(@coment)
-    if @coment.save
-      redirect_to articles_path
-    else
-      @coment.errors
-      p(@coment.errors)
-    end
+    render json: @coment;
+    # redirect_to @article
+    # if @coment.save
+    #   redirect_to articles_path
+    # else
+    #   @coment.errors
+    #   p(@coment.errors)
+    # end
   end
 
   # PATCH/PUT /coments/1
