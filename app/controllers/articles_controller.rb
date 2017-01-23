@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to articles_path
     else
-      ender 'new'
+      render 'new'
     end
   end
 

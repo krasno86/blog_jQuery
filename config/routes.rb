@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources :coments
 end
 
+  post '/articles/:article_id/coments', to: 'coments#create', as: :article_comments
+
 end

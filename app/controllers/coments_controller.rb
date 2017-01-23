@@ -10,19 +10,21 @@ class ComentsController < ApplicationController
     @coment = Coment.new
   end
 
+  # def create
+  #   @article = Article.find_by(id: params[:article_id])
+  #   @coment = @article.coments.create(coment_params)
+  #   # if @article.errors.empty?
+  #       redirect_to articles_path
+  # end
   def create
-    @article = Article.find_by(params[:article_id])
-    @coment = @article.coment.build(comment_params)
-    respond_to do |format|
-      if @coment.save
-        redirect_to @article
-      end
-        # format.html { redirect_to @commnt, notice: 'Comment was successfully created.' }
-        # format.json { render :show, status: :created, location: @coment }
-      # else
-      #   format.html { render :new }
-      #   format.json { render json: @coment.errors, status: :unprocessable_entity }
-      # end
+    @article = Article.find_by(id: params[:article_id])
+    @coment = current_user.coments.new(coment_params)
+    @article.coments.push(@coment)
+    if @coment.save
+      redirect_to articles_path
+    else
+      @coment.errors
+      p(@coment.errors)
     end
   end
 
@@ -58,6 +60,6 @@ class ComentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coment_params
-      params.require(:coment).permit( :text)
+      params.require(:coment).permit(:text)
     end
 end

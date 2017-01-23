@@ -6,12 +6,12 @@ function ready() {
 		var coment_text = $('textarea').val();
 		console.log(coment_text);
 		$.ajax({
-			url: 'coment/',
+			url: window.location.pathname+'/coments/',
 			type: 'Post',
 			data: {coment:{ text: coment_text} },
 			success: function (result) {
 				var parent = input.parents('.article-' + result.id);
-				$(parent).find('input').toggleClass('hidden');
+				$(parent).find('p#text').toggleClass('hidden');
 			}
 		});
 	}
@@ -48,16 +48,5 @@ function ready() {
 		}
 
 }
-
-// $(function () {
-// 	$('h2').click(function () {
-// 		var s = $(this).children('.survey');
-// 		s.find('h2').toggleClass('hidden');
-// 		var articleName = $(this).find('span').html();
-// 		s.find('input').val(surveyName).removeClass('hidden').focus();
-// 		var input = s.find('input');
-// 		input.blur(updateSurvey);
-// 	});
-// })
 
 $(document).on('turbolinks:load', ready());

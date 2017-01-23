@@ -14,7 +14,7 @@
     %h3.page-header Comments:
     - @article.coments.each do |coment|
       %p.hidden(data-coment-id="#{coment.id}")= coment.id
-      %p= coment.text
+      %p#text= coment.text
 %br
 = link_to 'Edit', edit_article_path(@article)
 |
