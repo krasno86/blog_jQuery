@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = current_user.articles
+    # @articles = Articles.all
   end
 
   # GET /articles/1
