@@ -1,9 +1,32 @@
 function ready() {
 	$(document).on('click', '#addComent', addComent);
 
+	$(function () {
+		$('#createComent').click(function () {
+			var b = $(this).parents('.coment_partial')
+			b.find('textarea.hidden').removeClass('hidden').focus();
+			var a = b.find('button#createComent').toggleClass('hidden');
+			var textarea = b.find('textarea#partial')
+			textarea.blur(createComent);
+		})
+	})
+
+	function createComent() {
+		var coment = $('textarea#partial').val();
+		console.log(coment);
+		$.ajax({
+			url: window.location.pathname+'/coments/',
+			type: 'Post',
+			data: {coment:{ text: coment} },
+			success: function (result) {
+			  $('.comments').append(result);
+				$('textarea#partial').toggleClass('hidden');
+			}
+		})
+	}
+
 	function addComent() {
-		console.log('click')
-		var button = $(this);
+		var button = $(this);''
 		var coment_text = $('textarea').val();
 		console.log(coment_text);
 		$.ajax({
@@ -12,7 +35,7 @@ function ready() {
 			data: {coment:{ text: coment_text} },
 			success: function (result) {
 				var p = $('<p>'+ result.text +'</p>');
-				// $('p.hidden#new_text').append(p).removeClass('hidden');
+				console.log(result);
 			$('.comments').append(p);
 			}
 		});

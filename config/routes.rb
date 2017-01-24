@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 end
 
   post '/articles/:article_id/coments', to: 'coments#create', as: :article_comments
-
+  # get 'coments/partial', to: 'coments#partial'
 end

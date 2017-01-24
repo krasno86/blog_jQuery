@@ -20,7 +20,9 @@ class ComentsController < ApplicationController
     @article = Article.find_by(id: params[:article_id])
     @coment = current_user.coments.new(coment_params)
     @article.coments.push(@coment)
-    render json: @coment;
+    # render json: @coment
+
+    render partial: 'form', locals: {coment: @coment}
     # redirect_to @article
     # if @coment.save
     #   redirect_to articles_path
@@ -28,6 +30,10 @@ class ComentsController < ApplicationController
     #   @coment.errors
     #   p(@coment.errors)
     # end
+  end
+
+  def partial
+  render partial: 'form'
   end
 
   # PATCH/PUT /coments/1

@@ -6,22 +6,17 @@
     - @articles.each do |article|
       -#%div{class: "col-xs-12 col-md-4 col-sm-6 col-sm-offset-2 article-#{article.id} article", data: {articleId: "#{article.id}"}}
       %div{class: "col-lg-4 article-#{article.id} article", data: {articleId: "#{article.id}"}}
-
         .thumbnail
           .caption
             %h2
               Post:
               %span #{article.name}
             %input.hidden(type='text' placeholder = "Enter new name" data-article-id="#{article.id}")
-            -#%p= article.text
             = link_to 'Show post', article_path(article.id), class: 'btn btn-primary'
             %hr/
             %h3
               Comments count:
               #{article.coments_count}
-              -#%p= pluralize(Article.coment_count, 'coment')
-              -#%span #{article.coment.lenght}
-              -#= button_tag 'Add coment', data: {article_id: "#{article.id}" }, class: 'btn btn-info', id: 'updateComent'
             %br
             = link_to 'Destroy post', article_path(article.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 
