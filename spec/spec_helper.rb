@@ -14,11 +14,9 @@
 #
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
-#
-# See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails_helper'
+# See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
   # rspec-expectations config goes here. You can use an alternate

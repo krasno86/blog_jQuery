@@ -7,11 +7,10 @@ end
 gem "haml-rails"
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '~> 5.0'
-
+gem 'faker', '~> 1.6.1'
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'shoulda-matchers', '~> 3.1'
   gem 'capybara', '~> 2.5'
   gem 'byebug', platform: :mri
 
@@ -24,6 +23,14 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :test do
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner', '~> 1.5'
+  gem 'faker', '~> 1.6.1'
+end
+
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

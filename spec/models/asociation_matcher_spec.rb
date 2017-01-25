@@ -4,12 +4,12 @@ module Shoulda
   module Matchers
     module ActiveRecord
 
-      def have_and_belong_to_many(name)
-        AssociationMatcher.new(:has_and_belongs_to_many, name)
+      def belong_to(user)
+        AssociationMatcher.new(:belongs_to, user)
       end
 
-      def have_many(user)
-        AssociationMatcher.new(:has_many, user)
+      def have_many(articles)
+        AssociationMatcher.new(:has_many, articles)
       end
 
       def with_foreign_key(user_id)
@@ -21,16 +21,6 @@ module Shoulda
         @options[:article_id] = primary_key
         self
       end
-
-
-
-
-
-
-
-
-
-
 
 
 
