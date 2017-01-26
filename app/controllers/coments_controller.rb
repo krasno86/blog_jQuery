@@ -10,12 +10,6 @@ class ComentsController < ApplicationController
     @coment = Coment.new
   end
 
-  # def create
-  #   @article = Article.find_by(id: params[:article_id])
-  #   @coment = @article.coments.create(coment_params)
-  #   # if @article.errors.empty?
-  #       redirect_to articles_path
-  # end
   def create
     @article = Article.find_by(id: params[:article_id])
     @coment = current_user.coments.new(coment_params)
